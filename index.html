@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Falasteen News</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='60%' x='50%' dominant-baseline='middle' text-anchor='middle' font-size='90'>🇵🇸</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #000000;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            color: #ffffff;
+            letter-spacing: -2px;
+        }
+
+        .main-content {
+            padding: 1rem;
+            max-width: 100%;
+        }
+
+        .siege-overview {
+            width: 100%;
+            margin: 0.5rem auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .siege-stat-item {
+            display: flex;
+            gap: 0.3rem;
+            margin-bottom: 0.2rem;
+            align-items: center;
+            background-color: #111111;
+            padding: 0.5rem;
+        }
+
+        .siege-number {
+            background-color: #8B0000;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            padding: 0.4rem;
+            min-width: 55px;
+            text-align: center;
+        }
+
+        .siege-description {
+            font-size: 0.85rem;
+            line-height: 1.2;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            flex: 1;
+        }
+
+        .maps-container {
+            display: flex;
+            flex-direction: row;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+
+        .map {
+            background-color: #000000;
+            padding: 0.5rem;
+        }
+
+        .map-small img {
+            width: 200px;
+            height: auto;
+        }
+
+        .map img {
+            width: 200px;
+            height: auto;
+        }
+
+        footer {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 1rem;
+            text-align: center;
+            border-top: 1px solid #333;
+            margin-top: auto;
+            font-size: 0.5rem;
+        }
+
+        @media (min-width: 769px) {
+            .siege-overview {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.3rem;
+            }
+
+            .map-small img {
+                width: 400px;
+            }
+
+            .map img {
+                width: 600px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .siege-number {
+                font-size: 1rem;
+                min-width: 50px;
+                padding: 0.4rem;
+            }
+
+            .siege-description {
+                font-size: 0.8rem;
+            }
+
+            .map:first-child {
+                width: 30%;
+                min-width: 100px;
+            }
+
+            .map:last-child {
+                width: 60%;
+                min-width: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-content">
+            <h1>FALASTEEN NEWS</h1>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <section class="siege-overview">
+        
+            <!-- West Bank Stats -->
+            <div class="siege-stat-item">
+                <div class="siege-number">24,000</div>
+                <div class="siege-description">Palestinians forcefully displaced from Tulkarm Camp and Nour Shams Camp </div>
+            </div>
+            <div class="siege-stat-item">
+                <div class="siege-number">21,000</div>
+                <div class="siege-description">Palestinians forcefully displaced from Jenin </div>
+            </div>
+            <div class="siege-stat-item">
+                <div class="siege-number">17</div>x
+                <div class="siege-description">Palestinians killed by the PA in Dec 2024 + Jan 2025 in West Bank</div>
+            </div>
+
+            <!-- Gaza Stats -->
+            <div class="siege-stat-item">
+                <div class="siege-number">27</div>
+                <div class="siege-description">Days since Gaza has received any aid</div>
+            </div>
+            <div class="siege-stat-item">
+                <div class="siege-number">921</div>
+                <div class="siege-description">Deaths since March 18 ceasefire break</div>
+            </div>
+            <div class="siege-stat-item">
+                <div class="siege-number">539</div>
+                <div class="siege-description">Days since start of extermination camp</div>
+            </div>
+            <div class="siege-stat-item">
+                <div class="siege-number">50,277</div>
+                <div class="siege-description">Total lives lost in Gaza</div>
+            </div>
+        </section>
+
+        <div class="maps-container">
+            <div class="map-small">
+                <img src="assets/gaza.png" alt="Gaza Map" onerror="this.style.display='none'">
+            </div>
+            <div class="map">
+                <img src="assets/westbank.png" alt="West Bank Map" onerror="this.style.display='none'">
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Falasteen News. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function calculateDaysSince(startDate) {
+            const start = new Date(startDate);
+            const today = new Date();
+            const diffTime = Math.abs(today - start);
+            return Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        }
+
+        function updateDaysCounter() {
+            // Gaza stats
+            const exterminationStartDate = new Date('2023-10-07');
+            const lastAidDate = new Date('2025-03-02');
+
+            // Update Gaza stats
+            const stats = document.querySelectorAll('.siege-stat-item');
+            stats[3].querySelector('.siege-number').textContent = calculateDaysSince(lastAidDate);
+            stats[4].querySelector('.siege-number').textContent = calculateDaysSince(exterminationStartDate);
+        }
+
+        // Update days on page load
+        updateDaysCounter();
+
+        // Update days every day
+        setInterval(updateDaysCounter, 24 * 60 * 60 * 1000);
+    </script>
+</body>
+</html>
+
